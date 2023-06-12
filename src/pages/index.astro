@@ -9,8 +9,9 @@ import path from 'path';
 if(Astro.request.method === "POST"){
 	try{
 		const body = await Astro.request.formData();
+    console.log(body)
 		const workbook = new Excel.Workbook();
-		await workbook.xlsx.readFile('/Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX');
+		await workbook.xlsx.readFile('public/Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX');
 		const sheet = workbook.getWorksheet(1);
 		sheet.eachRow({includeEmpty:false},(row,i)=>{
 			row.eachCell({includeEmpty:false},(cell,j)=>{
@@ -153,6 +154,7 @@ if(Astro.request.method === "POST"){
 <script>
 	const borang = document.querySelector("#borang_form") as HTMLFormElement;
 	borang?.addEventListener('submit',(e)=>{
+    e.preventDefault();
 		const formData = new FormData(borang);
   		let body:any = {}
   		for(const [key,value] of formData.entries()){

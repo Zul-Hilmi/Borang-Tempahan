@@ -1,0 +1,139 @@
+<div class="container" >
+    <table>
+        <thead>
+            <tr>
+                <th>TARIKH</th>
+                <th>SARAPAN</th>
+                <th>PAX</th>
+                <th>MINUM PAGI</th>
+                <th>PAX</th>
+                <th>MAKAN T/HARI</th>
+                <th>PAX</th>
+                <th>MINUM PETANG</th>
+                <th>PAX</th>
+                <th>MAKAN MALAM</th>
+                <th>PAX</th>
+                <th>MINUM MALAM</th>
+                <th>PAX</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="date" name="tarikh_1"></td>
+                <td class="time" rowspan="8">7.00AM</td>
+                <td><input type="number" name="sarapan_1"></td>
+                <td class="time" rowspan="8">9.30AM</td>
+                <td><input type="number" name="minum_pagi_1"></td>
+                <td class="time" rowspan="8">12.30PM</td>
+                <td><input type="number" name="makan_thari_1"></td>
+                <td class="time" rowspan="8">3.30PM</td>
+                <td><input type="number" name="minum_petang_1"></td>
+                <td class="time" rowspan="8">6.30PM</td>
+                <td><input type="number" name="makan_malam_1"></td>
+                <td class="time" rowspan="8">9.30PM</td>
+                <td><input type="number" name="minum_malam_1"></td>
+            </tr>
+            <tr>
+                <td><input type="date" name="tarikh_2"></td>
+                <td><input type="number" name="sarapan_2"></td>
+                <td><input type="number" name="minum_pagi_2"></td>
+                <td><input type="number" name="makan_thari_2"></td>
+                <td><input type="number" name="minum_petang_2"></td>
+                <td><input type="number" name="makan_malam_2"></td>
+                <td><input type="number" name="minum_malam_2"></td>
+            </tr>
+            <tr>
+                <td><input type="date" name="tarikh_3"></td>
+                <td><input type="number" name="sarapan_3"></td>
+                <td><input type="number" name="minum_pagi_3"></td>
+                <td><input type="number" name="makan_thari_3"></td>
+                <td><input type="number" name="minum_petang_3"></td>
+                <td><input type="number" name="makan_malam_3"></td>
+                <td><input type="number" name="minum_malam_3"></td>
+            </tr>
+            <tr>
+            <tr>
+                <td><input type="date" name="tarikh_4"></td>
+                <td><input type="number" name="sarapan_4"></td>
+                <td><input type="number" name="minum_pagi_4"></td>
+                <td><input type="number" name="makan_thari_4"></td>
+                <td><input type="number" name="minum_petang_4"></td>
+                <td><input type="number" name="makan_malam_4"></td>
+                <td><input type="number" name="minum_malam_4"></td>
+            </tr>
+            <tr>
+                <td><input type="date" name="tarikh_5"></td>
+                <td><input type="number" name="sarapan_5"></td>
+                <td><input type="number" name="minum_pagi_5"></td>
+                <td><input type="number" name="makan_thari_5"></td>
+                <td><input type="number" name="minum_petang_5"></td>
+                <td><input type="number" name="makan_malam_5"></td>
+                <td><input type="number" name="minum_malam_5"></td>
+            </tr>
+            <tr>
+                <td><input type="date" name="tarikh_6"></td>
+                <td><input type="number" name="sarapan_6"></td>
+                <td><input type="number" name="minum_pagi_6"></td>
+                <td><input type="number" name="makan_thari_6"></td>
+                <td><input type="number" name="minum_petang_6"></td>
+                <td><input type="number" name="makan_malam_6"></td>
+                <td><input type="number" name="minum_malam_6"></td>
+            </tr>
+            <tr>
+                <td><input type="date" name="tarikh_7"></td>
+                <td><input type="number" name="sarapan_7"></td>
+                <td><input type="number" name="minum_pagi_7"></td>
+                <td><input type="number" name="makan_thari_7"></td>
+                <td><input type="number" name="minum_petang_7"></td>
+                <td><input type="number" name="makan_malam_7"></td>
+                <td><input type="number" name="minum_malam_7"></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><b>SAHUR</b></td>
+                <td><b>PAX</b></td>
+                <td><b>BUKA PUASA</b></td>
+                <td><b>PAX</b></td>
+                <td><b>MOREH</b></td>
+                <td><b>PAX</b></td>
+                <td rowspan="6" colspan="6"></td>
+            </tr>
+            <tr>
+                <td><input type="date"></td>
+                <td>4.00AM</td>
+                <td><input type="number"></td>
+                <td>7.00PM</td>
+                <td><input type="number"></td>
+                <td>9.00PM</td>
+                <td><input type="number"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<style scoped>
+    .container{
+        display:flex;
+        gap:0.5rem;
+        flex-wrap: wrap;
+        overflow-x: scroll;
+        width: 100%;
+    }
+    table{
+        border-collapse: collapse;
+        font-size:x-small;
+        position:relative;
+        left:0;
+    }
+    th,td{
+        border:1px solid black;
+        padding:0.1rem;
+        text-align: center;
+    }
+    .time{
+      transform-origin: left top;
+      white-space: nowrap;
+    }
+    input[type="number"]{
+        width:80;
+    }
+</style>
