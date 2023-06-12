@@ -152,14 +152,13 @@ if(Astro.request.method === "POST"){
 </Layout>
 <script>
 	const borang = document.querySelector("#borang_form") as HTMLFormElement;
-
 	borang?.addEventListener('submit',(e)=>{
 		const formData = new FormData(borang);
   		let body:any = {}
   		for(const [key,value] of formData.entries()){
     		body[key] = value;
   		}
-		fetch(import.meta.env.PUBLIC_SERVER,{
+		fetch('/',{
 			method:"POST",
     		headers:{
     		  "Content-Type":"application/json",

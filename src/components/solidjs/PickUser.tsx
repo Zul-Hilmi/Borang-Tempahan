@@ -14,8 +14,7 @@ export default function PickUser(props:{name:string,label:string}){
         setPicked(true);
     }
     onMount(()=>{
-        const url = new URL(`${import.meta.env.PUBLIC_SERVER}/user`)
-        fetch(url)
+        fetch('/user')
         .then(res=>res.json())
         .then(data=>{
             setUsers(data.users)
