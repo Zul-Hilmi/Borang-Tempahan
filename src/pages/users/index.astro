@@ -1,0 +1,108 @@
+---
+import type { HydratedDocument } from 'mongoose';
+import Layout from '../../layouts/Layout.astro';
+import User, { IUser } from '../../models/User';
+import UserList from '../../components/solidjs/UserList';
+
+let message = "";
+let haveError = false;
+const errors = {nama:'',jabatan:'',emel:'',telefon:'',error:''}; 
+let users:HydratedDocument<IUser>[]=[];
+if(Astro.request.method === "POST"){
+	try{
+		const data = await Astro.request.formData();
+		const nama = data.get("nama");
+		const jabatan = data.get("jabatan");
+		const emel = data.get("emel");
+		const telefon = data.get("telefon");
+		console.log(`${nama}\n${jabatan}\n${emel}\n${telefon}`)
+		
+		if(typeof nama !== "string" || nama.trim().length<1){
+			errors.nama += "Nama tidak diberi";
+		}
+		if(typeof jabatan !== "string" || jabatan.trim().length<1){
+			errors.jabatan += "Jabatan tidak diberi";
+		}
+
+		if(typeof emel !== "string" || emel.trim().length<1){
+			errors.emel += "Emel tidak diberi";
+		}else{
+			const emailExist = await User.findOne({emel})
+			if(emailExist != null){
+				errors.emel += "Emel yang sama pernah didaftarkan";
+			}
+		}
+
+		if(typeof telefon !== "string" || telefon.trim().length<1){
+			errors.telefon += "Telefon tidak diberi";
+		}
+		
+		for(const err of Object.values(errors)){
+			if(err.trim().length>0) {
+				haveError=true;
+				break;
+			}
+		}
+		
+		if(haveError === false){
+			console.log("no error")
+			const user = new User({nama,emel,jabatan,telefon});
+			await user.save(); 
+			message="Emel berjaya didaftar";
+		}
+	}catch(err){
+		errors.error = "Something went wrong"
+		console.log('errors:')
+		console.log(err);
+	}
+}
+try{
+	users = await User.find();
+}catch(err){
+	console.log(err)
+}
+---
+
+<Layout title="Admin">
+	<main class="flex flex-col items-center gap-2">
+		<form method="POST" action="" class="flex flex-col gap-2 p-4 w-fit items-center">
+			<h1 class="font-bold text-center">DAFTAR ANGGOTA</h1>
+			<input type="text" name="nama" placeholder="NAMA" class="px-1 rounded border border-black" required>
+			<input type="email" name="emel" placeholder="EMEL" class="px-1 rounded border border-black" required>
+			<input type="text" name="telefon" placeholder="NO. TELEFON" class="px-1 rounded border border-black" required> 
+			<input type="text" name="jabatan" placeholder="JABATAN" class="px-1 rounded border border-black" required>
+			<button class="bg-blue-500 text-white rounded p-2 text-sm" type="submit">DAFTAR ANGGOTA</button>
+		</form>
+		<div>
+			<h1 class="font-bold text-center">SENARAI ANGGOTA</h1>
+			<UserList users={users} client:load />
+		</div>
+
+		<dialog id="message-modal" class="rounded backdrop:backdrop-blur-sm w-fit">
+		<form name="modal-form" method="dialog" class="flex flex-col w-full items-center ">
+			{<span class="text-center text-red-500 font-bold">{errors.nama}</span>}
+			{<span class="text-center text-red-500 font-bold">{errors.jabatan}</span>}
+			{<span class="text-center text-red-500 font-bold">{errors.emel}</span>}
+			{<span class="text-center text-red-500 font-bold">{errors.telefon}</span>}
+			{<span class="text-center text-green-500 font-bold">{message}</p>}
+			&nbsp;
+			<button type="button" formmethod="dialog" form="modal-form" id="closeModal"
+			class="text-white bg-blue-500 px-2 py-1 rounded w-1/2 hover:bg-blue-600"
+			>OK</button>
+		</form>
+		</dialog>
+	</main>
+</Layout>
+
+<script define:vars={{message,haveError}}>
+	const modal = document.querySelector("#message-modal");
+	const closeModal = document.querySelector("#closeModal");
+	closeModal.addEventListener('click',(e)=>{
+		modal.close();
+	})
+
+	if(haveError==true || message.trim().length>0){
+		modal.showModal();
+	}
+	
+</script>

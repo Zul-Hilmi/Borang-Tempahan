@@ -1,0 +1,122 @@
+---
+import type { HydratedDocument } from 'mongoose';
+import Layout from '../../layouts/Layout.astro';
+import User, { IUser } from '../../models/User';
+
+let message = "";
+let haveError = false;
+const errors = {emel:'',error:''}; 
+let user:HydratedDocument<IUser>|null = null;
+let query = new Map();
+let {id} = Astro.params;
+
+if(typeof id === 'undefined') return Astro.redirect('/users/');
+id = id as string;
+
+if(Astro.request.method === "PUT"){
+	try{
+		const data = await Astro.request.formData();
+		const nama = data.get("nama");
+		const jabatan = data.get("jabatan");
+		const emel = data.get("emel");
+		const telefon = data.get("telefon");
+		console.log(`${nama}\n${jabatan}\n${emel}\n${telefon}`)
+
+		if(typeof nama === "string" && nama.trim().length>0){
+            query.set('nama',nama);
+		}
+		if(typeof jabatan === "string" && jabatan.trim().length>0){
+			query.set('jabatan',jabatan);
+		}
+
+		if(typeof telefon === "string" && telefon.trim().length>0){
+			query.set('telefon',telefon);
+		}
+		
+		for(const err of Object.values(errors)){
+			if(err.trim().length>0) {
+				haveError=true;
+				break;
+			}
+		}
+		
+		if(haveError === false){
+			const update = await User.findByIdAndUpdate(id,new User(...query));
+            if(update !== null) 
+				return new Response(JSON.stringify({
+					message:"Butiran anggota berjaya diubah",errors,haveError
+				}),{
+					status:500
+				});
+		}
+	}catch(err){
+		errors.error = "Something went wrong"
+		console.log('errors:')
+		console.log(err);
+	}
+	return new Response(JSON.stringify({
+		message,errors,haveError
+	}),{
+		status:500,
+		statusText:"Something went wrong"
+	})
+}
+
+try{
+	user = await User.findById(id);
+    if(user === null || user === undefined) return Astro.redirect('/users/');
+}catch(err){
+	console.log(err)
+}
+---
+
+<Layout title="Pegawai">
+	<main class="flex flex-col items-center gap-2">
+		
+        <form class="flex flex-col gap-2 p-4 w-fit items-center" id="putForm">
+			<h1 class="font-bold text-center">MAKLUMAT ANGGOTA</h1>
+			<input type="email" class="px-1 rounded border border-black" value={user?.emel.toString()} disabled/>
+			<input type="text" name="nama" class="px-1 rounded border border-black" value={user?.nama.toString()}/>
+			<input type="text" name="telefon" class="px-1 rounded border border-black" value={user?.telefon.toString()}/> 
+			<input type="text" name="jabatan" class="px-1 rounded border border-black" value={user?.jabatan.toString()}/>
+			<button class="bg-blue-500 text-white rounded p-2 text-sm" type="submit">KEMASKINI</button>
+		</form>
+		<dialog id="message-modal" class="rounded backdrop:backdrop-blur-sm w-fit">
+		<form name="modal-form" method="dialog" class="flex flex-col w-full items-center ">
+			{<span class="text-center text-red-500 font-bold">{errors.emel}</span>}
+			{<span class="text-center text-green-500 font-bold">{message}</p>}
+			&nbsp;
+			<button type="button" formmethod="dialog" form="modal-form" id="closeModal"
+			class="text-white bg-blue-500 px-2 py-1 rounded w-1/2 hover:bg-blue-600"
+			>OK</button>
+		</form>
+		</dialog>
+	</main>
+</Layout>
+
+<script define:vars={{message,haveError}}>
+	const modal = document.querySelector("#message-modal");
+	const closeModal = document.querySelector("#closeModal");
+	closeModal.addEventListener('click',(e)=>{
+		modal.close();
+	})
+
+	if(haveError==true || message.trim().length>0){
+		modal.showModal();
+	}
+
+	const putForm = document.querySelector("#putForm");
+	putForm.addEventListener("submit",async(e)=>{
+		const res = await fetch('',{
+			
+		});
+		if(res.ok){
+			const data = await res.json();
+			console.log(data)
+		}else {
+			console.log(res.statusText)
+		}
+	})
+
+	
+</script>
