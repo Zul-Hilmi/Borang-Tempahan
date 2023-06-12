@@ -10,7 +10,7 @@ if(Astro.request.method === "POST"){
 		const body = await Astro.request.formData();
 		console.log(body)
 		const workbook = new Excel.Workbook();
-		await workbook.xlsx.readFile("./public/Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX");
+		await workbook.xlsx.readFile("public/Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX");
 		const sheet = workbook.getWorksheet(1);
 		sheet.eachRow({includeEmpty:false},(row,i)=>{
 			row.eachCell({includeEmpty:false},(cell,j)=>{
