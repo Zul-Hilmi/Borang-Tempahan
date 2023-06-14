@@ -5,7 +5,7 @@ import Excel from "exceljs";
 import Mess from "../components/astro/Mess.astro";
 import User from "../models/User";
 import path from 'path'
-
+console.log(import.meta.url)
 if (Astro.request.method === "POST") {
   try {
     const file = `${path.resolve("Borang_Tempahan.XLSX")}`
