@@ -10,11 +10,11 @@ if (Astro.request.method === "POST") {
   try {
     const body = await Astro.request.formData();
     // const file = path.join('public','Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX')
-    const file = path.join(path.dirname(import.meta.url),'client','Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX')
+    const file = path.join(path.dirname(import.meta.url),'..','..','client','Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX')
     console.log(file);
     
     const workbook = new Excel.Workbook();
-    await workbook.xlsx.readFile(url);
+    await workbook.xlsx.readFile(file);
     const sheet = workbook.getWorksheet(1);
     const sheet2 = workbook.getWorksheet(2);
     sheet.getCell("E14").value = body.get("jabatan_pemohon")?.toString();
