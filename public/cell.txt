@@ -109,6 +109,31 @@
     makan_malam_7:N65,
     minum_malam_7:P65,
 
+    tarikh_8:A19,
+    sahur_1:D19,
+    buka_puasa_1:F19,
+    moreh_1:H19,
+
+    tarikh_9:A20,
+    sahur_2:D20,
+    buka_puasa_2:F20,
+    moreh_2:H20,
+
+    tarikh_10:A21,
+    sahur_3:D21,
+    buka_puasa_3:F21,
+    moreh_3:H21,
+
+    tarikh_11:A22,
+    sahur_4:D22,
+    buka_puasa_4:F22,
+    moreh_4:H22,
+
+    tarikh_12:A23,
+    sahur_5:D23,
+    buka_puasa_5:F23,
+    moreh_5:H23,
+
     dome_set:E74,
     vegetarian:K74,
     catatan_makan_minum:D76,

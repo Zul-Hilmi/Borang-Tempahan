@@ -1,181 +1,399 @@
 ---
-import { Workbook } from "exceljs";
 import PickUser from "../components/solidjs/PickUser";
 import Layout from "../layouts/Layout.astro";
 import Excel from "exceljs";
 import Mess from "../components/astro/Mess.astro";
-import path from 'path';
+import path from "path";
 
-if(Astro.request.method === "POST"){
-	try{
-		const body = await Astro.request.formData();
-    console.log(body)
-		const workbook = new Excel.Workbook();
-		await workbook.xlsx.readFile('public/Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX');
-		const sheet = workbook.getWorksheet(1);
-		sheet.eachRow({includeEmpty:false},(row,i)=>{
-			row.eachCell({includeEmpty:false},(cell,j)=>{
-				sheet.getCell(i,j).style = cell.style;
-			});
-		});
-			sheet.getCell('E14').value = body.get('jabatan_pemohon')?.toString();
-            sheet.getCell('E15').value = body.get('nama_pemohon')?.toString();
-            sheet.getCell('E16').value = body.get('telefon_pemohon')?.toString();
-            sheet.getCell('E17').value = body.get('emel_pemohon')?.toString();
-            sheet.getCell('M14').value = body.get('jabatan_pegawai')?.toString();
-            sheet.getCell('M15').value = body.get('nama_pegawai')?.toString();
-            sheet.getCell('M16').value = body.get('telefon_pegawai')?.toString();
-            sheet.getCell('M17').value = body.get('emel_pegawai')?.toString();
-            sheet.getCell('E21').value = body.get('nama_program')?.toString();
-            sheet.getCell('E22').value = body.get('jumlah_peserta')?.toString();
-            sheet.getCell('M21').value = body.get('tarikh_mula')?.toString();
-            sheet.getCell('M22').value = body.get('tarikh_akhir')?.toString();
-            sheet.getCell('M23').value = body.get('masa_seminar')?.toString();
-            sheet.getCell('F27').value = body.get('tarikh_masuk')?.toString();
-            sheet.getCell('F28').value = body.get('tarikh_keluar')?.toString();
-            sheet.getCell('F30').value = body.get('bilik_seorang_L')?.toString();
-            sheet.getCell('H30').value = body.get('bilik_seorang_P')?.toString();
-            sheet.getCell('N30').value = body.get('bilik_berdua_L')?.toString();
-            sheet.getCell('P30').value = body.get('bilik_berdua_P')?.toString();
-            sheet.getCell('D31').value = body.get('catatan_ruai_inap')?.toString();
-            sheet.getCell('E39').value = body.get('bilik_kuliah')?.toString();
-            sheet.getCell('E40').value = body.get('bilik_bengkel')?.toString();
-            sheet.getCell('E41').value = body.get('bilik_seminar')?.toString();
-            sheet.getCell('E42').value = body.get('makmal_komputer')?.toString();
-            sheet.getCell('E43').value = body.get('dewan_rempah_ratus')?.toString();
-            sheet.getCell('E45').value = body.get('lain_jenis_bilik')?.toString();
-            sheet.getCell('I39').value = body.get('classroom')?.toString();
-            sheet.getCell('I40').value = body.get('cluster')?.toString();
-            sheet.getCell('I41').value = body.get('ushape')?.toString();
-            sheet.getCell('I42').value = body.get('fishbone')?.toString();
-            sheet.getCell('I43').value = body.get('theatre')?.toString();
-            sheet.getCell('I45').value = body.get('lain_susun_atur')?.toString();
-            sheet.getCell('D47').value = body.get('catatan_bilik_latihan')?.toString();
-            sheet.getCell('O39').value = body.get('lcd_projector')?.toString();
-            sheet.getCell('O40').value = body.get('pa')?.toString();
-            sheet.getCell('O41').value = body.get('portable_pa')?.toString();
-            sheet.getCell('O42').value = body.get('bateri')?.toString();
-            sheet.getCell('O43').value = body.get('flip_chart')?.toString();
-            sheet.getCell('O44').value = body.get('a4_paper')?.toString();
-            sheet.getCell('O45').value = body.get('kertas_mahjong')?.toString();
-            sheet.getCell('O46').value = body.get('alat_tulis')?.toString();
-            sheet.getCell('O47').value = body.get('lain_jenis_peralatan')?.toString();
-            sheet.getCell('G52').value = body.get('kod_material')?.toString();
-            sheet.getCell('G53').value = body.get('gl_kod')?.toString();
-            sheet.getCell('G54').value = body.get('pusat_kos')?.toString();
-            sheet.getCell('G55').value = body.get('bajet_makan_minum')?.toString();
-            sheet.getCell('G56').value = body.get('catatan_kos_fb')?.toString();
+if (Astro.request.method === "POST") {
+  try {
+    const body = await Astro.request.formData();
+    // console.log(body);
+    const workbook = new Excel.Workbook();
+    await workbook.xlsx.readFile(
+     path.join('public','Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX')
+    );
+    const sheet = workbook.getWorksheet(1);
+    const sheet2 = workbook.getWorksheet(2);
+    sheet.getCell("E14").value = body.get("jabatan_pemohon")?.toString();
+    sheet.getCell("E15").value = body.get("nama_pemohon")?.toString();
+    sheet.getCell("E16").value = body.get("telefon_pemohon")?.toString();
+    sheet.getCell("E17").value = body.get("emel_pemohon")?.toString();
+    sheet.getCell("M14").value = body.get("jabatan_pegawai")?.toString();
+    sheet.getCell("M15").value = body.get("nama_pegawai")?.toString();
+    sheet.getCell("M16").value = body.get("telefon_pegawai")?.toString();
+    sheet.getCell("M17").value = body.get("emel_pegawai")?.toString();
+    sheet.getCell("E21").value = body.get("nama_program")?.toString();
+    sheet.getCell("E22").value = body.get("jumlah_peserta")?.toString();
+    sheet.getCell("M21").value = body.get("tarikh_mula")?.toString();
+    sheet.getCell("M22").value = body.get("tarikh_akhir")?.toString();
+    sheet.getCell("M23").value = body.get("masa_seminar")?.toString();
+    sheet.getCell("F27").value = body.get("tarikh_masuk")?.toString();
+    sheet.getCell("F28").value = body.get("tarikh_keluar")?.toString();
+    sheet.getCell("F30").value = body.get("bilik_seorang_L")?.toString();
+    sheet.getCell("H30").value = body.get("bilik_seorang_P")?.toString();
+    sheet.getCell("N30").value = body.get("bilik_berdua_L")?.toString();
+    sheet.getCell("P30").value = body.get("bilik_berdua_P")?.toString();
+    sheet.getCell("D31").value = body.get("catatan_ruai_inap")?.toString();
+    sheet.getCell("E39").value = body.get("bilik_kuliah")?.toString();
+    sheet.getCell("E40").value = body.get("bilik_bengkel")?.toString();
+    sheet.getCell("E41").value = body.get("bilik_seminar")?.toString();
+    sheet.getCell("E42").value = body.get("makmal_komputer")?.toString();
+    sheet.getCell("E43").value = body.get("dewan_rempah_ratus")?.toString();
+    sheet.getCell("E45").value = body.get("lain_jenis_bilik")?.toString();
+    sheet.getCell("I39").value = body.get("classroom")?.toString();
+    sheet.getCell("I40").value = body.get("cluster")?.toString();
+    sheet.getCell("I41").value = body.get("ushape")?.toString();
+    sheet.getCell("I42").value = body.get("fishbone")?.toString();
+    sheet.getCell("I43").value = body.get("theatre")?.toString();
+    sheet.getCell("I45").value = body.get("lain_susun_atur")?.toString();
+    sheet.getCell("D47").value = body.get("catatan_bilik_latihan")?.toString();
+    sheet.getCell("O39").value = body.get("lcd_projector")?.toString();
+    sheet.getCell("O40").value = body.get("pa")?.toString();
+    sheet.getCell("O41").value = body.get("portable_pa")?.toString();
+    sheet.getCell("O42").value = body.get("bateri")?.toString();
+    sheet.getCell("O43").value = body.get("flip_chart")?.toString();
+    sheet.getCell("O44").value = body.get("a4_paper")?.toString();
+    sheet.getCell("O45").value = body.get("kertas_mahjong")?.toString();
+    sheet.getCell("O46").value = body.get("alat_tulis")?.toString();
+    sheet.getCell("O47").value = body.get("lain_jenis_peralatan")?.toString();
+    sheet.getCell("G52").value = body.get("kod_material")?.toString();
+    sheet.getCell("G53").value = body.get("gl_kod")?.toString();
+    sheet.getCell("G54").value = body.get("pusat_kos")?.toString();
+    sheet.getCell("G55").value = body.get("bajet_makan_minum")?.toString();
+    sheet.getCell("G56").value = body.get("catatan_kos_fb")?.toString();
 
-            sheet.getCell('C59').value = body.get('tarikh_1')?.toString();
-            sheet.getCell('F59').value = body.get('sarapan_1')?.toString();
-            sheet.getCell('H59').value = body.get('minum_pagi_1')?.toString();
-            sheet.getCell('J59').value = body.get('makan_thari_1')?.toString();
-            sheet.getCell('L59').value = body.get('minum_petang_1')?.toString();
-            sheet.getCell('N59').value = body.get('makan_malam_1')?.toString();
-            sheet.getCell('P59').value = body.get('minum_malam_1')?.toString();
+    sheet.getCell("C59").value = body.get("tarikh_1")?.toString();
+    sheet2.getCell("A10").value =  body.get("tarikh_1")?.toString();
+    
+    sheet.getCell("F59").value = Number(body.get("sarapan_1"));
+    sheet2.getCell("D10").value = Number(body.get("sarapan_1"));
+    sheet2.getCell("D10").numFmt = '0'
 
-            sheet.getCell('C60').value = body.get('tarikh_2')?.toString();
-            sheet.getCell('F60').value = body.get('sarapan_2')?.toString();
-            sheet.getCell('H60').value = body.get('minum_pagi_2')?.toString();
-            sheet.getCell('J60').value = body.get('makan_thari_2')?.toString();
-            sheet.getCell('L60').value = body.get('minum_petang_2')?.toString();
-            sheet.getCell('N60').value = body.get('makan_malam_2')?.toString();
-            sheet.getCell('P60').value = body.get('minum_malam_2')?.toString();
+    sheet.getCell("H59").value =  Number(body.get("minum_pagi_1"));
+    sheet2.getCell("F10").value = Number(body.get("minum_pagi_1"));
+    sheet2.getCell("F10").numFmt = '0'
+  
+    sheet.getCell("J59").value =  Number(body.get("makan_thari_1"));
+    sheet2.getCell("H10").value = Number(body.get("makan_thari_1"));
+    sheet2.getCell("H10").numFmt = '0'
 
-            sheet.getCell('C61').value = body.get('tarikh_3')?.toString();
-            sheet.getCell('F61').value = body.get('sarapan_3')?.toString();
-            sheet.getCell('H61').value = body.get('minum_pagi_3')?.toString();
-            sheet.getCell('J61').value = body.get('makan_thari_3')?.toString();
-            sheet.getCell('L61').value = body.get('minum_petang_3')?.toString();
-            sheet.getCell('N61').value = body.get('makan_malam_3')?.toString();
-            sheet.getCell('P61').value = body.get('minum_malam_3')?.toString();
 
-            sheet.getCell('C62').value = body.get('tarikh_4')?.toString();
-            sheet.getCell('F62').value = body.get('sarapan_4')?.toString();
-            sheet.getCell('H62').value = body.get('minum_pagi_4')?.toString();
-            sheet.getCell('J62').value = body.get('makan_thari_4')?.toString();
-            sheet.getCell('L62').value = body.get('minum_petang_4')?.toString();
-            sheet.getCell('N62').value = body.get('makan_malam_4')?.toString();
-            sheet.getCell('P62').value = body.get('minum_malam_4')?.toString();
+    sheet.getCell("L59").value = Number(body.get("minum_petang_1"));
+    sheet2.getCell("J10").value = Number(body.get("minum_petang_1"));
+    sheet2.getCell("J10").numFmt = '0'
 
-            sheet.getCell('C63').value = body.get('tarikh_5')?.toString();
-            sheet.getCell('F63').value = body.get('sarapan_5')?.toString();
-            sheet.getCell('H63').value = body.get('minum_pagi_5')?.toString();
-            sheet.getCell('J63').value = body.get('makan_thari_5')?.toString();
-            sheet.getCell('L63').value = body.get('minum_petang_5')?.toString();
-            sheet.getCell('N63').value = body.get('makan_malam_5')?.toString();
-            sheet.getCell('P63').value = body.get('minum_malam_5')?.toString();
+    sheet.getCell("N59").value =  Number(body.get("makan_malam_1"));
+    sheet2.getCell("L10").value = Number(body.get("makan_malam_1"));
+    sheet2.getCell("L10").numFmt = '0'
 
-            sheet.getCell('C64').value = body.get('tarikh_6')?.toString();
-            sheet.getCell('F64').value = body.get('sarapan_6')?.toString();
-            sheet.getCell('H64').value = body.get('minum_pagi_6')?.toString();
-            sheet.getCell('J64').value = body.get('makan_thari_6')?.toString();
-            sheet.getCell('L64').value = body.get('minum_petang_6')?.toString();
-            sheet.getCell('N64').value = body.get('makan_malam_6')?.toString();
-            sheet.getCell('P64').value = body.get('minum_malam_6')?.toString();
+    sheet.getCell("P59").value =  Number(body.get("minum_malam_1"));
+    sheet2.getCell("N10").value = Number(body.get("minum_malam_1"));
+    sheet2.getCell("N10").numFmt = '0'
 
-            sheet.getCell('C65').value = body.get('tarikh_7')?.toString();
-            sheet.getCell('F65').value = body.get('sarapan_7')?.toString();
-            sheet.getCell('H65').value = body.get('minum_pagi_7')?.toString();
-            sheet.getCell('J65').value = body.get('makan_thari_7')?.toString();
-            sheet.getCell('L65').value = body.get('minum_petang_7')?.toString();
-            sheet.getCell('N65').value = body.get('makan_malam_7')?.toString();
-            sheet.getCell('P65').value = body.get('minum_malam_7')?.toString();
+    sheet.getCell("C60").value = body.get("tarikh_2")?.toString();
+    sheet2.getCell("A11").value =  body.get("tarikh_2")?.toString();
+    
+    sheet.getCell("F60").value = Number(body.get("sarapan_2"));
+    sheet2.getCell("D11").value = Number(body.get("sarapan_2"));
+    sheet2.getCell("D11").numFmt = '0'
 
-			const buffer = await sheet.workbook.xlsx.writeBuffer();
-			return new Response(buffer,{
-				headers:{
-					'Content-Type': 'application/pdf',
-					'Content-Disposition': `attachment; filename="borang tempahan.xlsx"`,
-				}
-			})
+    sheet.getCell("H60").value =  Number(body.get("minum_pagi_2"));
+    sheet2.getCell("F11").value = Number(body.get("minum_pagi_2"));
+    sheet2.getCell("F11").numFmt = '0'
+  
+    sheet.getCell("J60").value =  Number(body.get("makan_thari_2"));
+    sheet2.getCell("H11").value = Number(body.get("makan_thari_2"));
+    sheet2.getCell("H11").numFmt = '0'
 
-	}catch(err){
-		console.log(err)
-	}
-	
+
+    sheet.getCell("L60").value = Number(body.get("minum_petang_2"));
+    sheet2.getCell("J11").value = Number(body.get("minum_petang_2"));
+    sheet2.getCell("J11").numFmt = '0'
+
+    sheet.getCell("N60").value =  Number(body.get("makan_malam_2"));
+    sheet2.getCell("L11").value = Number(body.get("makan_malam_2"));
+    sheet2.getCell("L11").numFmt = '0'
+
+    sheet.getCell("P60").value =  Number(body.get("minum_malam_2"));
+    sheet2.getCell("N11").value = Number(body.get("minum_malam_2"));
+    sheet2.getCell("N11").numFmt = '0'
+
+    sheet.getCell("C61").value = body.get("tarikh_3")?.toString();
+    sheet2.getCell("A12").value =  body.get("tarikh_3")?.toString();
+    
+    sheet.getCell("F61").value = Number(body.get("sarapan_3"));
+    sheet2.getCell("D12").value = Number(body.get("sarapan_3"));
+    sheet2.getCell("D12").numFmt = '0'
+
+    sheet.getCell("H61").value =  Number(body.get("minum_pagi_3"));
+    sheet2.getCell("F12").value = Number(body.get("minum_pagi_3"));
+    sheet2.getCell("F12").numFmt = '0'
+  
+    sheet.getCell("J61").value =  Number(body.get("makan_thari_3"));
+    sheet2.getCell("H12").value = Number(body.get("makan_thari_3"));
+    sheet2.getCell("H12").numFmt = '0'
+
+
+    sheet.getCell("L61").value = Number(body.get("minum_petang_3"));
+    sheet2.getCell("J12").value = Number(body.get("minum_petang_3"));
+    sheet2.getCell("J12").numFmt = '0'
+
+    sheet.getCell("N61").value =  Number(body.get("makan_malam_3"));
+    sheet2.getCell("L12").value = Number(body.get("makan_malam_3"));
+    sheet2.getCell("L12").numFmt = '0'
+
+    sheet.getCell("P61").value =  Number(body.get("minum_malam_3"));
+    sheet2.getCell("N12").value = Number(body.get("minum_malam_3"));
+    sheet2.getCell("N12").numFmt = '0'
+
+    sheet.getCell("C62").value = body.get("tarikh_4")?.toString();
+    sheet2.getCell("A13").value =  body.get("tarikh_4")?.toString();
+    
+    sheet.getCell("F62").value = Number(body.get("sarapan_4"));
+    sheet2.getCell("D13").value = Number(body.get("sarapan_4"));
+    sheet2.getCell("D13").numFmt = '0'
+
+    sheet.getCell("H62").value =  Number(body.get("minum_pagi_4"));
+    sheet2.getCell("F13").value = Number(body.get("minum_pagi_4"));
+    sheet2.getCell("F13").numFmt = '0'
+  
+    sheet.getCell("J62").value =  Number(body.get("makan_thari_4"));
+    sheet2.getCell("H13").value = Number(body.get("makan_thari_4"));
+    sheet2.getCell("H13").numFmt = '0'
+
+
+    sheet.getCell("L62").value = Number(body.get("minum_petang_4"));
+    sheet2.getCell("J13").value = Number(body.get("minum_petang_4"));
+    sheet2.getCell("J13").numFmt = '0'
+
+    sheet.getCell("N62").value =  Number(body.get("makan_malam_4"));
+    sheet2.getCell("L13").value = Number(body.get("makan_malam_4"));
+    sheet2.getCell("L13").numFmt = '0'
+
+    sheet.getCell("P62").value =  Number(body.get("minum_malam_4"));
+    sheet2.getCell("N13").value = Number(body.get("minum_malam_4"));
+    sheet2.getCell("N13").numFmt = '0'
+
+    sheet.getCell("C63").value = body.get("tarikh_5")?.toString();
+    sheet2.getCell("A14").value =  body.get("tarikh_5")?.toString();
+    
+    sheet.getCell("F63").value = Number(body.get("sarapan_5"));
+    sheet2.getCell("D14").value = Number(body.get("sarapan_5"));
+    sheet2.getCell("D14").numFmt = '0'
+
+    sheet.getCell("H63").value =  Number(body.get("minum_pagi_5"));
+    sheet2.getCell("F14").value = Number(body.get("minum_pagi_5"));
+    sheet2.getCell("F14").numFmt = '0'
+  
+    sheet.getCell("J63").value =  Number(body.get("makan_thari_5"));
+    sheet2.getCell("H14").value = Number(body.get("makan_thari_5"));
+    sheet2.getCell("H14").numFmt = '0'
+
+
+    sheet.getCell("L63").value = Number(body.get("minum_petang_5"));
+    sheet2.getCell("J14").value = Number(body.get("minum_petang_5"));
+    sheet2.getCell("J14").numFmt = '0'
+
+    sheet.getCell("N63").value =  Number(body.get("makan_malam_5"));
+    sheet2.getCell("L14").value = Number(body.get("makan_malam_5"));
+    sheet2.getCell("L14").numFmt = '0'
+
+    sheet.getCell("P63").value =  Number(body.get("minum_malam_5"));
+    sheet2.getCell("N14").value = Number(body.get("minum_malam_5"));
+    sheet2.getCell("N14").numFmt = '0'
+
+    sheet.getCell("C64").value = body.get("tarikh_6")?.toString();
+    sheet2.getCell("A15").value =  body.get("tarikh_6")?.toString();
+    
+    sheet.getCell("F64").value = Number(body.get("sarapan_6"));
+    sheet2.getCell("D15").value = Number(body.get("sarapan_6"));
+    sheet2.getCell("D15").numFmt = '0'
+
+    sheet.getCell("H64").value =  Number(body.get("minum_pagi_6"));
+    sheet2.getCell("F15").value = Number(body.get("minum_pagi_6"));
+    sheet2.getCell("F15").numFmt = '0'
+  
+    sheet.getCell("J64").value =  Number(body.get("makan_thari_6"));
+    sheet2.getCell("H15").value = Number(body.get("makan_thari_6"));
+    sheet2.getCell("H15").numFmt = '0'
+
+
+    sheet.getCell("L64").value = Number(body.get("minum_petang_6"));
+    sheet2.getCell("J15").value = Number(body.get("minum_petang_6"));
+    sheet2.getCell("J15").numFmt = '0'
+
+    sheet.getCell("N64").value =  Number(body.get("makan_malam_6"));
+    sheet2.getCell("L15").value = Number(body.get("makan_malam_6"));
+    sheet2.getCell("L15").numFmt = '0'
+
+    sheet.getCell("P64").value =  Number(body.get("minum_malam_6"));
+    sheet2.getCell("N15").value = Number(body.get("minum_malam_6"));
+    sheet2.getCell("N15").numFmt = '0'
+
+    sheet.getCell("C65").value = body.get("tarikh_7")?.toString();
+    sheet2.getCell("A16").value =  body.get("tarikh_7")?.toString();
+    
+    sheet.getCell("F65").value = Number(body.get("sarapan_7"));
+    sheet2.getCell("D16").value = Number(body.get("sarapan_7"));
+    sheet2.getCell("D16").numFmt = '0'
+
+    sheet.getCell("H65").value =  Number(body.get("minum_pagi_7"));
+    sheet2.getCell("F16").value = Number(body.get("minum_pagi_7"));
+    sheet2.getCell("F16").numFmt = '0'
+  
+    sheet.getCell("J65").value =  Number(body.get("makan_thari_7"));
+    sheet2.getCell("H16").value = Number(body.get("makan_thari_7"));
+    sheet2.getCell("H16").numFmt = '0'
+
+
+    sheet.getCell("L65").value = Number(body.get("minum_petang_7"));
+    sheet2.getCell("J16").value = Number(body.get("minum_petang_7"));
+    sheet2.getCell("J16").numFmt = '0'
+
+    sheet.getCell("N65").value =  Number(body.get("makan_malam_7"));
+    sheet2.getCell("L16").value = Number(body.get("makan_malam_7"));
+    sheet2.getCell("L16").numFmt = '0'
+
+    sheet.getCell("P65").value =  Number(body.get("minum_malam_7"));
+    sheet2.getCell("N16").value = Number(body.get("minum_malam_7"));
+    sheet2.getCell("N16").numFmt = '0'
+
+    sheet.getCell("C67").value = body.get("tarikh_8")?.toString();
+    sheet2.getCell("A19").value =  body.get("tarikh_8")?.toString();
+
+    sheet.getCell("F67").value = Number(body.get("sahur_1"));
+    sheet2.getCell("D19").value = Number(body.get("sahur_1"));
+    sheet2.getCell("D19").numFmt = '0'
+      
+    sheet.getCell("H67").value =  Number(body.get("buka_puasa_1"));
+    sheet2.getCell("F19").value = Number(body.get("buka_puasa_1"));
+    sheet2.getCell("F19").numFmt = '0'
+      
+    sheet.getCell("J67").value =  Number(body.get("moreh_1"));
+    sheet2.getCell("H19").value = Number(body.get("moreh_1"));
+    sheet2.getCell("H19").numFmt = '0'
+
+sheet.getCell("C68").value = body.get("tarikh_9")?.toString();
+sheet2.getCell("A20").value =  body.get("tarikh_9")?.toString();
+
+sheet.getCell("F68").value = Number(body.get("sahur_2"));
+sheet2.getCell("D20").value = Number(body.get("sahur_2"));
+sheet2.getCell("D20").numFmt = '0'
+  
+sheet.getCell("H68").value =  Number(body.get("buka_puasa_2"));
+sheet2.getCell("F20").value = Number(body.get("buka_puasa_2"));
+sheet2.getCell("F20").numFmt = '0'
+  
+sheet.getCell("J68").value =  Number(body.get("moreh_2"));
+sheet2.getCell("H20").value = Number(body.get("moreh_2"));
+sheet2.getCell("H20").numFmt = '0'
+
+sheet.getCell("C69").value = body.get("tarikh_10")?.toString();
+sheet2.getCell("A21").value =  body.get("tarikh_10")?.toString();
+
+sheet.getCell("F69").value = Number(body.get("sahur_3"));
+sheet2.getCell("D21").value = Number(body.get("sahur_3"));
+sheet2.getCell("D21").numFmt = '0'
+  
+sheet.getCell("H69").value =  Number(body.get("buka_puasa_3"));
+sheet2.getCell("F21").value = Number(body.get("buka_puasa_3"));
+sheet2.getCell("F21").numFmt = '0'
+  
+sheet.getCell("J69").value =  Number(body.get("moreh_3"));
+sheet2.getCell("H21").value = Number(body.get("moreh_3"));
+sheet2.getCell("H21").numFmt = '0'
+
+sheet.getCell("C70").value = body.get("tarikh_11")?.toString();
+sheet2.getCell("A22").value =  body.get("tarikh_11")?.toString();
+
+sheet.getCell("F70").value = Number(body.get("sahur_4"));
+sheet2.getCell("D22").value = Number(body.get("sahur_4"));
+sheet2.getCell("D22").numFmt = '0'
+  
+sheet.getCell("H70").value =  Number(body.get("buka_puasa_4"));
+sheet2.getCell("F22").value = Number(body.get("buka_puasa_4"));
+sheet2.getCell("F22").numFmt = '0'
+  
+sheet.getCell("J70").value =  Number(body.get("moreh_4"));
+sheet2.getCell("H22").value = Number(body.get("moreh_4"));
+sheet2.getCell("H22").numFmt = '0'
+
+sheet.getCell("C71").value = body.get("tarikh_12")?.toString();
+sheet2.getCell("A23").value =  body.get("tarikh_12")?.toString();
+
+sheet.getCell("F71").value = Number(body.get("sahur_5"));
+sheet2.getCell("D23").value = Number(body.get("sahur_5"));
+sheet2.getCell("D23").numFmt = '0'
+  
+sheet.getCell("H71").value =  Number(body.get("buka_puasa_5"));
+sheet2.getCell("F23").value = Number(body.get("buka_puasa_5"));
+sheet2.getCell("F23").numFmt = '0'
+  
+sheet.getCell("J71").value =  Number(body.get("moreh_5"));
+sheet2.getCell("H23").value = Number(body.get("moreh_5"));
+sheet2.getCell("H23").numFmt = '0'
+    const buffer = await workbook.xlsx.writeBuffer();
+    return new Response(buffer, {
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `attachment; filename="borang tempahan.xlsx"`,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
 }
-
 ---
 
 <Layout title="Borang Tempahan">
-	<main class="flex justify-center p-2">
-		<form id="borang_form" method="POST" class="flex flex-col items-center gap-2 bg-slate-300 max-w-fit">
-			<h1 class="text-center font-bold bg-slate-400 w-full">MAKLUMAT PETUGAS PROGRAM</h1>
-			<PickUser name="pemohon" label="PEMOHON" client:load/>
-			<PickUser name="pegawai" label="PEGAWAI" client:load/>
-			<Mess/>
-			<div class="p-2">
-				<button class="text-white bg-blue-500 hover:bg-blue-600 rounded p-1">MUAT TURUN</button>
-			</div>
-		</form>
-	</main>
+  <main class="flex justify-center p-2">
+    <form
+      id="borang_form"
+      method="POST"
+      action=""
+      class="flex flex-col items-center gap-2 bg-slate-300 max-w-fit"
+    >
+      <h1 class="text-center font-bold bg-slate-400 w-full">
+        MAKLUMAT PETUGAS PROGRAM
+      </h1>
+      <PickUser name="pemohon" label="PEMOHON" client:load />
+      <PickUser name="pegawai" label="PEGAWAI" client:load />
+      <Mess />
+      <div class="p-2">
+        <button class="text-white bg-blue-500 hover:bg-blue-600 rounded p-1"
+          >MUAT TURUN</button
+        >
+      </div>
+    </form>
+  </main>
 </Layout>
-<script>
-	const borang = document.querySelector("#borang_form") as HTMLFormElement;
-	borang?.addEventListener('submit',(e)=>{
+<!-- <script>
+  const borang = document.querySelector("#borang_form") as HTMLFormElement;
+  borang?.addEventListener("submit", (e) => {
     e.preventDefault();
-		const formData = new FormData(borang);
-  		let body:any = {}
-  		for(const [key,value] of formData.entries()){
-    		body[key] = value;
-  		}
-		fetch('/',{
-			method:"POST",
-    		headers:{
-    		  "Content-Type":"application/json",
-    		},
-			body:JSON.stringify(body)
-		})
-		.then(res=>res.blob())
-		.then(data=>{
-			const url = URL.createObjectURL(data);
-        	const a = document.createElement('a');
-        	a.href=url;
-        	a.download=`${crypto.randomUUID()}.xlsx`;
-        	a.click();
-        	URL.revokeObjectURL(url);
-		}).catch(err=>console.log(err))
-		
-	})
-</script>
+    const formData = new FormData(borang);
+    let body = new Map();
+    for (const [key, value] of formData.entries()) {
+      body.set(key,value);
+    }
+    console.log(body)
+    fetch("/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+      .then((res) => res.blob())
+      .then((data) => {
+        const url = URL.createObjectURL(data);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${crypto.randomUUID()}.xlsx`;
+        a.click();
+        URL.revokeObjectURL(url);
+      })
+      .catch((err) => console.log(err));
+  });
+</script> -->
