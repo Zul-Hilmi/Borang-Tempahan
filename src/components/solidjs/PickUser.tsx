@@ -20,7 +20,7 @@ export default function PickUser(props:{name:string,label:string,users:IUser[]})
          fallback={<p>{error()}</p>}
         >
             <div class="grid grid-cols-2">
-            <label for={`nama_${props.name}`} class="ml-2">NAMA {props.label}</label>
+            <label for={`nama_${props.name}`} class="ml-2 font-bold">NAMA {props.label}</label>
             <select onChange={selectUser}>
                 <For each={users()}>
                     {(user,i)=>
@@ -29,12 +29,12 @@ export default function PickUser(props:{name:string,label:string,users:IUser[]})
                 </For>
             </select>
                 <input type="hidden" value={user().nama} name={`nama_${props.name}`}/>
-                <label for={`jabatan_${props.name}`} class="ml-2">JABATAN:</label> 
-                <input type="text" name={`jabatan_${props.name}`} value={user().jabatan} />
-                <label for={`telefon_${props.name}`} class="ml-2">NO. TEL:</label>
-                <input type="text" name={`telefon_${props.name}`} value={user().telefon}/>
-                <label for={`emel_${props.name}`} class="ml-2">EMEL:</label>
-                <input type="text" name={`emel_${props.name}`} value={user().emel}/>
+                <label for={`jabatan_${props.name}`} class="ml-2 font-bold">JABATAN:</label> 
+                <input type="text" name={`jabatan_${props.name}`} class="text-center" value={user().jabatan} />
+                <label for={`telefon_${props.name}`} class="ml-2 font-bold">NO. TEL:</label>
+                <input type="text" name={`telefon_${props.name}`} class="text-center" value={user().telefon}/>
+                <label for={`emel_${props.name}`} class="ml-2 font-bold">EMEL:</label>
+                <input type="text" name={`emel_${props.name}`} class="text-center" value={user().emel}/>
             </div>
         </Show>
         </>

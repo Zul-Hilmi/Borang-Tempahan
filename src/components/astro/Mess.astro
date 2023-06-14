@@ -7,108 +7,110 @@ import TableMakanMinum from "./TableMakanMinum.astro";
     
 
     <div class="grid grid-cols-2 border border-black p-1">
-      <h2 class='col-span-2 bg-slate-300 text-center font-bold'>MAKLUMAT PROGRAM</h2>
+      <h2 class='col-span-2 bg-slate-200 text-center font-bold'>MAKLUMAT PROGRAM</h2>
         <label for="nama_program" class="font-bold ">NAMA PROGRAM</label>
-        <input type="text" name="nama_program" id="nama_program" 
+        <input type="text" name="nama_program" id="nama_program"  placeholder="NAMA PROGRAM"
           class="border border-black hover:outline-none rounded px-1"/>   
         <label for="jumlah_peserta" class="font-bold ">JUMLAH PESERTA</label>
-        <input type="text" name="jumlah_peserta" id="jumlah_peserta" 
+        <input type="text" name="jumlah_peserta" id="jumlah_peserta"  placeholder="JUMLAH PESERTA"
           class="border border-black hover:outline-none rounded px-1"/>   
         <label for="tarikh_mula" class="font-bold ">TARIKH MULA</label>
-        <input type="text" name="tarikh_mula" id="tarikh_mula" 
+        <input type="text" name="tarikh_mula" id="tarikh_mula"  placeholder="TARIKH MULA"
           class="border border-black hover:outline-none rounded px-1"/>    
         <label for="tarikh_akhir" class="font-bold ">TARIKH AKHIR</label>
-        <input type="text" name="tarikh_akhir" id="tarikh_akhir" 
+        <input type="text" name="tarikh_akhir" id="tarikh_akhir"  placeholder="TARIKH AKHIR"
          class="border border-black hover:outline-none rounded px-1"/>    
          <label for="masa_seminar" class="font-bold ">MASA SEMINAR</label>
-         <input type="text" name="masa_seminar" id="masa_seminar" 
+         <input type="text" name="masa_seminar" id="masa_seminar"  placeholder="MASA SEMINAR"
           class="border border-black hover:outline-none rounded px-1"/> 
     </div>
     
     <div class="grid grid-cols-2 border border-black p-1">
-      <h1 class='col-span-2 bg-slate-400 text-center font-bold'>TEMPAHAN PENGINAPAN RUAI INAP</h1>
-        <label for="tarikh_masuk" class="font-bold ">TARIKH MASUK</label>
-        <input type="text" name="tarikh_masuk" id="tarikh_masuk" 
+      <h1 class='col-span-2 bg-slate-200 text-center font-bold'>TEMPAHAN PENGINAPAN RUAI INAP</h1>
+        <label for="tarikh_masuk" class="font-bold">TARIKH MASUK</label>
+        <input type="text" name="tarikh_masuk" id="tarikh_masuk" placeholder="TARIKH MASUK"
           class="border border-black hover:outline-none rounded px-1"/>   
         <label for="tarikh_keluar" class="font-bold ">TARIKH KELUAR</label>
-        <input type="text" name="tarikh_keluar" id="tarikh_keluar" 
+        <input type="text" name="tarikh_keluar" id="tarikh_keluar"  placeholder="TARIKH KELUAR"
           class="border border-black hover:outline-none rounded px-1"/>   
       <h3 class='col-span-2 bg-slate-200 text-center font-bold'>BILIK PERSEORANGAN (HOD)</h3>
         <label for="bilik_seorang_L" class="font-bold justify-self-center">L</label>
-        <input type="text" name="bilik_seorang_L" id="bilik_seorang_L" 
+        <input type="text" name="bilik_seorang_L" id="bilik_seorang_L"   placeholder="L"
           class="border border-black hover:outline-none rounded px-1"/>    
         <label for="bilik_seorang_P" class="font-bold justify-self-center">P</label>
-        <input type="text" name="bilik_seorang_P" id="bilik_seorang_P" 
+        <input type="text" name="bilik_seorang_P" id="bilik_seorang_P"  placeholder="P"
          class="border border-black hover:outline-none rounded px-1"/>    
         <h3 class='col-span-2 bg-slate-200 text-center font-bold'>BILIK BERKONGSI BERDUA</h3>
           <label for="bilik_berdua_L" class="font-bold justify-self-center">L</label>
-          <input type="text" name="bilik_berdua_L" id="bilik_berdua_L" 
+          <input type="text" name="bilik_berdua_L" id="bilik_berdua_L"  placeholder="L"
             class="border border-black hover:outline-none rounded px-1"/>    
           <label for="bilik_berdua_P" class="font-bold justify-self-center">P</label>
-          <input type="text" name="bilik_berdua_P" id="bilik_berdua_P" 
+          <input type="text" name="bilik_berdua_P" id="bilik_berdua_P"  placeholder="P"
            class="border border-black hover:outline-none rounded px-1"/>     
            <label for="catatan_ruai_inap" class="font-bold ">CATATAN</label>
-           <input type="text" name="catatan_ruai_inap" id="catatan_ruai_inap" 
-             class="border border-black hover:outline-none rounded px-1"/> 
+           <textarea name="catatan_ruai_inap" id="catatan_ruai_inap" 
+             class="border border-black hover:outline-none rounded px-1"> 
+           </textarea>
     </div>
 
     <div class="grid grid-cols-2 border border-black p-1">
-      <h1 class='col-span-2 bg-slate-400 text-center font-bold'>TEMPAHAN BILIK LATIHAN</h1>
-      <h3 class='col-span-2 bg-slate-200 text-center font-bold'>MAKLUMAT TEMPAHAN BILIK LATIHAN</h3>
+      <h1 class='col-span-2 bg-slate-200 text-center font-bold'>TEMPAHAN BILIK LATIHAN</h1>
+      <h3 class='col-span-2 bg-slate-200 text-center font-bold border border-black'>MAKLUMAT TEMPAHAN BILIK LATIHAN</h3>
 
       <div class="text-center bg-slate-200 font-bold border border-black">JENIS BILIK</div>
       <div class="text-center bg-slate-200 font-bold border border-black">JUMLAH</div>
         
       <label for="bilik_kuliah" class="font-bold ">BILIK KULIAH</label>
-      <input type="text" name="bilik_kuliah" id="bilik_kuliah" 
+      <input type="text" name="bilik_kuliah" id="bilik_kuliah"  placeholder="BILIK KULIAH"
         class="border border-black hover:outline-none rounded px-1"/> 
         <label for="bilik_bengkel" class="font-bold ">BILIK BENGKEL</label>
-        <input type="text" name="bilik_bengkel" id="bilik_bengkel" 
+        <input type="text" name="bilik_bengkel" id="bilik_bengkel"  placeholder="BILIK BENGKEL"
           class="border border-black hover:outline-none rounded px-1"/> 
           <label for="bilik_seminar" class="font-bold ">BILIK SEMINAR</label>
-          <input type="text" name="bilik_seminar" id="bilik_seminar" 
+          <input type="text" name="bilik_seminar" id="bilik_seminar"  placeholder="BILIK SEMINAR"
             class="border border-black hover:outline-none rounded px-1"/>
             <label for="makmal_komputer" class="font-bold ">MAKMAL KOMPUTER</label>
-            <input type="text" name="makmal_komputer" id="makmal_komputer" 
+            <input type="text" name="makmal_komputer" id="makmal_komputer"  placeholder="MAKMAL KOMPUTER"
               class="border border-black hover:outline-none rounded px-1"/> 
               <label for="dewan_rempah_ratus" class="font-bold ">DEWAN REMPAH RATUS</label>
-              <input type="text" name="dewan_rempah_ratus" id="dewan_rempah_ratus" 
+              <input type="text" name="dewan_rempah_ratus" id="dewan_rempah_ratus"  placeholder="DEWAN REMPAH RATUS"
                 class="border border-black hover:outline-none rounded px-1"/>  
             <label for="lain_jenis_bilik" class="font-bold ">LAIN-LAIN(NYATAKAN)</label>
-            <input type="text" name="makmal_komputer" id="makmal_komputer" 
+            <input type="text" name="makmal_komputer" id="makmal_komputer"  placeholder="LAIN-LAIN(NYATAKAN)"
               class="border border-black hover:outline-none rounded px-1"/>  
       
       <div class="text-center bg-slate-200 font-bold border border-black">SUSUN ATUR</div>
       <div class="text-center bg-slate-200 font-bold border border-black">(/)</div>
       
       <label for="classroom" class="font-bold ">CLASSROOM</label>
-      <input type="text" name="classroom" id="classroom" 
+      <input type="text" name="classroom" id="classroom"  placeholder="CLASSROOM"
         class="border border-black hover:outline-none rounded px-1"/>  
       
         <label for="cluster" class="font-bold ">CLUSTER</label>
-        <input type="text" name="cluster" id="cluster" 
+        <input type="text" name="cluster" id="cluster"  placeholder="CLUSTER"
           class="border border-black hover:outline-none rounded px-1"/>  
       
         <label for="ushape" class="font-bold ">U-SHAPE</label>
-        <input type="text" name="ushape" id="ushape" 
+        <input type="text" name="ushape" id="ushape"  placeholder="U-SHAPE"
           class="border border-black hover:outline-none rounded px-1"/>  
           
         <label for="fishbone" class="font-bold ">FISHBONE</label>
-        <input type="text" name="fishbone" id="fishbone" 
+        <input type="text" name="fishbone" id="fishbone"  placeholder="FISHBONE"
           class="border border-black hover:outline-none rounded px-1"/> 
           
         <label for="theatre" class="font-bold ">THEATRE</label>
-        <input type="text" name="theatre" id="theatre" 
+        <input type="text" name="theatre" id="theatre"  placeholder="THEATRE"
           class="border border-black hover:outline-none rounded px-1"/>  
 
         <label for="lain_susun_atur" class="font-bold ">LAIN-LAIN(NYATAKAN)</label>
-        <input type="text" name="lain_susun_atur" id="lain_susun_atur" 
+        <input type="text" name="lain_susun_atur" id="lain_susun_atur"  placeholder="LAIN-LAIN(NYATAKAN)"
           class="border border-black hover:outline-none rounded px-1"/> 
 
         <div class='col-span-2'>&nbsp;</div>
         <label for="catatan_bilik_latihan" class="font-bold ">CATATAN</label>
-        <input type="text" name="catatan_bilik_latihan" id="catatan_bilik_latihan" 
-          class="border border-black hover:outline-none rounded px-1"/> 
+        <textarea name="catatan_bilik_latihan" id="catatan_bilik_latihan"  
+          class="border border-black hover:outline-none rounded px-1"></textarea>
+
         <div class='col-span-2'>&nbsp;</div>
         <h3 class='col-span-2 bg-slate-200 text-center font-bold'>MAKLUMAT TEMPAHAN (AUDIO-VISUAL)</h3>
 
@@ -116,39 +118,39 @@ import TableMakanMinum from "./TableMakanMinum.astro";
         <div class="text-center bg-slate-200 font-bold  border border-black">JUMLAH DIPERLUKAN</div>
         
         <label for="lcd_projector" class="font-bold ">LCD PROJECTOR</label>
-        <input type="text" name="lcd_projector" id="lcd_projector" 
+        <input type="text" name="lcd_projector" id="lcd_projector"  placeholder="LCD PROJECTOR"
           class="border border-black hover:outline-none rounded px-1"/> 
 
           <label for="pa" class="font-bold ">PA (CORDLESS/COLLAR MIC)</label>
-          <input type="text" name="pa" id="pa" 
+          <input type="text" name="pa" id="pa"  placeholder="PA (CORDLESS/COLLAR MIC)"
             class="border border-black hover:outline-none rounded px-1"/> 
           
           <label for="portable_pa" class="font-bold ">PORTABLE PA(TOA)</label>
-          <input type="text" name="portable_pa" id="portable_pa" 
+          <input type="text" name="portable_pa" id="portable_pa"   placeholder="PORTABLE PA(TOA)"
             class="border border-black hover:outline-none rounded px-1"/> 
           
           <label for="bateri" class="font-bold ">BATERI (AAA,AAA)</label>
-          <input type="text" name="bateri" id="bateri" 
+          <input type="text" name="bateri" id="bateri" placeholder="BATERI (AAA,AAA)"
             class="border border-black hover:outline-none rounded px-1"/> 
           
           <label for="flip_chart" class="font-bold ">FLIP CHART STAND</label>
-          <input type="text" name="flip_chart" id="flip_chart" 
+          <input type="text" name="flip_chart" id="flip_chart" placeholder="FLIP CHART STAND"
             class="border border-black hover:outline-none rounded px-1"/> 
           
           <label for="a4_paper" class="font-bold ">A4 PAPER</label>
-          <input type="text" name="a4_paper" id="a4_paper" 
+          <input type="text" name="a4_paper" id="a4_paper" placeholder="A4 PAPER"
             class="border border-black hover:outline-none rounded px-1"/> 
           
           <label for="kertas_mahjong" class="font-bold ">KERTAS MAHJONG</label>
-          <input type="text" name="kertas_mahjong" id="kertas_mahjong" 
+          <input type="text" name="kertas_mahjong" id="kertas_mahjong" placeholder="KERTAS MAHJONG"
             class="border border-black hover:outline-none rounded px-1"/>
           
           <label for="alat_tulis" class="font-bold ">ALAT TULIS</label>
-          <input type="text" name="alat_tulis" id="alat_tulis" 
+          <input type="text" name="alat_tulis" id="alat_tulis" placeholder="ALAT TULIS"
             class="border border-black hover:outline-none rounded px-1"/> 
 
           <label for="lain_jenis_peralatan" class="font-bold ">LAIN-LAIN(NYATAKAN)</label>
-          <input type="text" name="lain_jenis_peralatan" id="lain_jenis_peralatan" 
+          <input type="text" name="lain_jenis_peralatan" id="lain_jenis_peralatan" placeholder="LAIN-LAIN(NYATAKAN)"
             class="border border-black hover:outline-none rounded px-1"/> 
 
             
@@ -158,31 +160,31 @@ import TableMakanMinum from "./TableMakanMinum.astro";
     <div class="grid grid-cols-2 border border-black p-1">
       <h2 class='col-span-2 bg-slate-200 text-center font-bold'>TEMPAHAN MAKAN MINUM</h2>
         <label for="kod_material" class="font-bold ">KOD MATERIAL</label>
-        <input type="text" name="kod_material" id="kod_material" 
+        <input type="text" name="kod_material" id="kod_material" placeholder="KOD MATERIAL"
           class="border border-black hover:outline-none rounded px-1"/>   
         <label for="gl_kod" class="font-bold ">GL KOD</label>
-        <input type="text" name="gl_kod" id="gl_kod" 
+        <input type="text" name="gl_kod" id="gl_kod" placeholder="GL KOD"
           class="border border-black hover:outline-none rounded px-1"/>   
         <label for="pusat_kos" class="font-bold ">PUSAT KOS</label>
-        <input type="text" name="pusat_kos" id="pusat_kos" 
+        <input type="text" name="pusat_kos" id="pusat_kos" placeholder="PUSAT KOS"
           class="border border-black hover:outline-none rounded px-1"/>    
         <label for="bajet_makan_minum" class="font-bold ">BAJET MAKAN MINUM</label>
-        <input type="text" name="bajet_makan_minum" id="bajet_makan_minum" 
+        <input type="text" name="bajet_makan_minum" id="bajet_makan_minum" placeholder="BAJET MAKAN MINUM"
          class="border border-black hover:outline-none rounded px-1"/>    
          <label for="catatan_kos_fb" class="font-bold ">CATATAN</label>
-         <input type="text" name="catatan_kos_fb" id="catatan_kos_fb" 
-          class="border border-black hover:outline-none rounded px-1"/> 
+         <textarea name="catatan_kos_fb" id="catatan_kos_fb" 
+          class="border border-black hover:outline-none rounded px-1"></textarea> 
     </div>
     <TableMakanMinum/>
   <div class="grid grid-cols-2 border border-black p-1">
       <label for="dome_set" class="font-bold ">DOME SET</label>
-      <input type="text" name="dome_set" id="dome_set" 
+      <input type="text" name="dome_set" id="dome_set" placeholder="DOME SET"
         class="border border-black hover:outline-none rounded px-1"/>   
       <label for="vegetarian" class="font-bold ">VEGETARIAN</label>
-      <input type="text" name="vegetarian" id="vegetarian" 
+      <input type="text" name="vegetarian" id="vegetarian" placeholder="VEGETARIAN"
         class="border border-black hover:outline-none rounded px-1"/>   
       <label for="catatan_last" class="font-bold ">CATATAN_</label>
-      <input type="text" name="catatan_last" id="catatan_last" 
-        class="border border-black hover:outline-none rounded px-1"/>    
+      <textarea name="catatan_last" id="catatan_last" 
+        class="border border-black hover:outline-none rounded px-1"></textarea>    
   </div>
   </div>
