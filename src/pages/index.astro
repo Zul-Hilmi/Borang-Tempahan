@@ -8,7 +8,7 @@ import User from "../models/User";
 if (Astro.request.method === "POST") {
   try {
     const body = await Astro.request.formData();
-    const file = `${Astro.request.url}/Borang_Tempahan.XLSX`
+    const file = `${Astro.request.url}Borang_Tempahan.XLSX`
     const workbook = new Excel.Workbook();
     await workbook.xlsx.readFile(file);
     const sheet = workbook.getWorksheet(1);
