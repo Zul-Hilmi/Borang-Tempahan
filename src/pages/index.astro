@@ -6,13 +6,13 @@ import Mess from "../components/astro/Mess.astro";
 import path,{dirname} from "path";
 import User from "../models/User";
 
+console.log(import.meta.url)
 if (Astro.request.method === "POST") {
   try {
     const body = await Astro.request.formData();
     // const file = path.join('public','Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX')
     // const file = path.join(path.dirname(import.meta.url),'Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX')
     const file = "./Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX"
-    
     const workbook = new Excel.Workbook();
     await workbook.xlsx.readFile(file);
     const sheet = workbook.getWorksheet(1);
