@@ -13,54 +13,28 @@ let {id} = Astro.params;
 if(typeof id === 'undefined') return Astro.redirect('/users/');
 id = id as string;
 
-if(Astro.request.method === "PUT"){
-	try{
-		const data = await Astro.request.formData();
-		const nama = data.get("nama");
-		const jabatan = data.get("jabatan");
-		const emel = data.get("emel");
-		const telefon = data.get("telefon");
-		console.log(`${nama}\n${jabatan}\n${emel}\n${telefon}`)
 
-		if(typeof nama === "string" && nama.trim().length>0){
-            query.set('nama',nama);
-		}
-		if(typeof jabatan === "string" && jabatan.trim().length>0){
-			query.set('jabatan',jabatan);
-		}
+if(Astro.request.method === "DELETE"){
+    try {
+        if (id !== null) {
+            const user = await User.findByIdAndDelete({ _id: id });
+            if (user) {
+                return new Response(JSON.stringify({
+                    message: "Maklumat anggota berjaya dipadam", error: null
+                }),
+                    { status: 200 });
+            }
+        }
+    } catch (err) {
+        console.log(err)
+    }
 
-		if(typeof telefon === "string" && telefon.trim().length>0){
-			query.set('telefon',telefon);
-		}
-		
-		for(const err of Object.values(errors)){
-			if(err.trim().length>0) {
-				haveError=true;
-				break;
-			}
-		}
-		
-		if(haveError === false){
-			const update = await User.findByIdAndUpdate(id,new User(...query));
-            if(update !== null) 
-				return new Response(JSON.stringify({
-					message:"Butiran anggota berjaya diubah",errors,haveError
-				}),{
-					status:500
-				});
-		}
-	}catch(err){
-		errors.error = "Something went wrong"
-		console.log('errors:')
-		console.log(err);
-	}
-	return new Response(JSON.stringify({
-		message,errors,haveError
-	}),{
-		status:500,
-		statusText:"Something went wrong"
-	})
+    return new Response(JSON.stringify({
+        data: null, message: 'Gagal memadam maklumat anggota',
+    }), { status: 500 });
+
 }
+
 
 try{
 	user = await User.findById(id);
@@ -79,7 +53,7 @@ try{
 			<input type="text" name="nama" class="px-1 rounded border border-black" value={user?.nama.toString()}/>
 			<input type="text" name="telefon" class="px-1 rounded border border-black" value={user?.telefon.toString()}/> 
 			<input type="text" name="jabatan" class="px-1 rounded border border-black" value={user?.jabatan.toString()}/>
-			<button class="bg-blue-500 text-white rounded p-2 text-sm" type="submit">KEMASKINI</button>
+			<button class="bg-red-500 text-white rounded p-2 text-sm" type="submit">PADAM</button>
 		</form>
 		<dialog id="message-modal" class="rounded backdrop:backdrop-blur-sm w-fit">
 		<form name="modal-form" method="dialog" class="flex flex-col w-full items-center ">
@@ -108,14 +82,10 @@ try{
 	const putForm = document.querySelector("#putForm");
 	putForm.addEventListener("submit",async(e)=>{
 		const res = await fetch('',{
-			
+			method:"DELETE"
 		});
-		if(res.ok){
-			const data = await res.json();
-			console.log(data)
-		}else {
-			console.log(res.statusText)
-		}
+		const data = await res.json();
+		alert(data.message)
 	})
 
 	

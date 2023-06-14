@@ -27,7 +27,7 @@ import TableMakanMinum from "./TableMakanMinum.astro";
     </div>
     
     <div class="grid grid-cols-2 border border-black p-1">
-      <h2 class='col-span-2 bg-slate-300 text-center font-bold'>TEMPAHAN PENGINAPAN RUAI INAP</h2>
+      <h1 class='col-span-2 bg-slate-400 text-center font-bold'>TEMPAHAN PENGINAPAN RUAI INAP</h1>
         <label for="tarikh_masuk" class="font-bold ">TARIKH MASUK</label>
         <input type="text" name="tarikh_masuk" id="tarikh_masuk" 
           class="border border-black hover:outline-none rounded px-1"/>   
@@ -54,11 +54,11 @@ import TableMakanMinum from "./TableMakanMinum.astro";
     </div>
 
     <div class="grid grid-cols-2 border border-black p-1">
-      <h2 class='col-span-2 bg-slate-300 text-center font-bold'>TEMPAHAN BILIK LATIHAN</h2>
+      <h1 class='col-span-2 bg-slate-400 text-center font-bold'>TEMPAHAN BILIK LATIHAN</h1>
       <h3 class='col-span-2 bg-slate-200 text-center font-bold'>MAKLUMAT TEMPAHAN BILIK LATIHAN</h3>
 
-      <div class="text-center bg-slate-200 font-bold">JENIS BILIK</div>
-      <div class="text-center bg-slate-200 font-bold">JUMLAH</div>
+      <div class="text-center bg-slate-200 font-bold border border-black">JENIS BILIK</div>
+      <div class="text-center bg-slate-200 font-bold border border-black">JUMLAH</div>
         
       <label for="bilik_kuliah" class="font-bold ">BILIK KULIAH</label>
       <input type="text" name="bilik_kuliah" id="bilik_kuliah" 
@@ -79,8 +79,8 @@ import TableMakanMinum from "./TableMakanMinum.astro";
             <input type="text" name="makmal_komputer" id="makmal_komputer" 
               class="border border-black hover:outline-none rounded px-1"/>  
       
-      <div class="text-center bg-slate-200 font-bold">SUSUN ATUR</div>
-      <div class="text-center bg-slate-200 font-bold">(/)</div>
+      <div class="text-center bg-slate-200 font-bold border border-black">SUSUN ATUR</div>
+      <div class="text-center bg-slate-200 font-bold border border-black">(/)</div>
       
       <label for="classroom" class="font-bold ">CLASSROOM</label>
       <input type="text" name="classroom" id="classroom" 
@@ -113,8 +113,8 @@ import TableMakanMinum from "./TableMakanMinum.astro";
         <div class='col-span-2'>&nbsp;</div>
         <h3 class='col-span-2 bg-slate-200 text-center font-bold'>MAKLUMAT TEMPAHAN (AUDIO-VISUAL)</h3>
 
-        <div class="text-center bg-slate-200 font-bold">JENIS PERALATAN</div>
-        <div class="text-center bg-slate-200 font-bold">JUMLAH DIPERLUKAN</div>
+        <div class="text-center bg-slate-200 font-bold  border border-black">JENIS PERALATAN</div>
+        <div class="text-center bg-slate-200 font-bold  border border-black">JUMLAH DIPERLUKAN</div>
         
         <label for="lcd_projector" class="font-bold ">LCD PROJECTOR</label>
         <input type="text" name="lcd_projector" id="lcd_projector" 
@@ -156,5 +156,34 @@ import TableMakanMinum from "./TableMakanMinum.astro";
           
 
     </div>
-
+    <div class="grid grid-cols-2 border border-black p-1">
+      <h2 class='col-span-2 bg-slate-200 text-center font-bold'>TEMPAHAN MAKAN MINUM</h2>
+        <label for="kod_material" class="font-bold ">KOD MATERIAL</label>
+        <input type="text" name="kod_material" id="kod_material" 
+          class="border border-black hover:outline-none rounded px-1"/>   
+        <label for="gl_kod" class="font-bold ">GL KOD</label>
+        <input type="text" name="gl_kod" id="gl_kod" 
+          class="border border-black hover:outline-none rounded px-1"/>   
+        <label for="pusat_kos" class="font-bold ">PUSAT KOS</label>
+        <input type="text" name="pusat_kos" id="pusat_kos" 
+          class="border border-black hover:outline-none rounded px-1"/>    
+        <label for="bajet_makan_minum" class="font-bold ">BAJET MAKAN MINUM</label>
+        <input type="text" name="bajet_makan_minum" id="bajet_makan_minum" 
+         class="border border-black hover:outline-none rounded px-1"/>    
+         <label for="catatan_kos_fb" class="font-bold ">CATATAN</label>
+         <input type="text" name="catatan_kos_fb" id="catatan_kos_fb" 
+          class="border border-black hover:outline-none rounded px-1"/> 
+    </div>
     <TableMakanMinum/>
+  <div class="grid grid-cols-2 border border-black p-1">
+      <label for="dome_set" class="font-bold ">DOME SET</label>
+      <input type="text" name="dome_set" id="dome_set" 
+        class="border border-black hover:outline-none rounded px-1"/>   
+      <label for="vegetarian" class="font-bold ">VEGETARIAN</label>
+      <input type="text" name="vegetarian" id="vegetarian" 
+        class="border border-black hover:outline-none rounded px-1"/>   
+      <label for="catatan_last" class="font-bold ">CATATAN_</label>
+      <input type="text" name="catatan_last" id="catatan_last" 
+        class="border border-black hover:outline-none rounded px-1"/>    
+  </div>
+  </div>

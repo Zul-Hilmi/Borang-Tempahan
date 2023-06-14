@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import Excel from "exceljs";
 import Mess from "../components/astro/Mess.astro";
 import path from "path";
+import User from "../models/User";
 
 if (Astro.request.method === "POST") {
   try {
@@ -62,6 +63,10 @@ if (Astro.request.method === "POST") {
     sheet.getCell("G54").value = body.get("pusat_kos")?.toString();
     sheet.getCell("G55").value = body.get("bajet_makan_minum")?.toString();
     sheet.getCell("G56").value = body.get("catatan_kos_fb")?.toString();
+    sheet.getCell("E74").value = body.get("dome_set")?.toString();
+    sheet.getCell("K74").value = body.get("vegetarian")?.toString();
+    sheet.getCell("E76").value = body.get("catatan_last")?.toString();
+
 
     sheet.getCell("C59").value = body.get("tarikh_1")?.toString();
     sheet2.getCell("A10").value =  body.get("tarikh_1")?.toString();
@@ -344,10 +349,17 @@ sheet2.getCell("H23").numFmt = '0'
     console.log(err);
   }
 }
+
+let users:any=[]
+try{
+  users = await User.find().lean();
+}catch(err){
+  console.log(err)
+}
 ---
 
 <Layout title="Borang Tempahan">
-  <main class="flex justify-center p-2">
+  <main class="flex flex-col justify-center p-2">
     <form
       id="borang_form"
       method="POST"
@@ -357,8 +369,8 @@ sheet2.getCell("H23").numFmt = '0'
       <h1 class="text-center font-bold bg-slate-400 w-full">
         MAKLUMAT PETUGAS PROGRAM
       </h1>
-      <PickUser name="pemohon" label="PEMOHON" client:load />
-      <PickUser name="pegawai" label="PEGAWAI" client:load />
+      <PickUser name="pemohon" label="PEMOHON" users={users} client:load />
+      <PickUser name="pegawai" label="PEGAWAI" users={users} client:load />
       <Mess />
       <div class="p-2">
         <button class="text-white bg-blue-500 hover:bg-blue-600 rounded p-1"

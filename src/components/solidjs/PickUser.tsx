@@ -4,24 +4,17 @@ type Ev = Event & {
     currentTarget: HTMLSelectElement;
     target: HTMLSelectElement;
 }
-export default function PickUser(props:{name:string,label:string}){
-    const [users,setUsers] = createSignal<IUser[]>([]);
+export default function PickUser(props:{name:string,label:string,users:IUser[]}){
+    console.log(props.users)
+    const [users,setUsers] = createSignal<IUser[]>(props.users);
     const [error,setError] = createSignal('');
-    const [user,setUser] = createSignal<IUser>({nama:'',emel:'',jabatan:'',telefon:''});
+    const [user,setUser] = createSignal<IUser>(users()[0]);
     const [picked,setPicked] = createSignal(false);
     const selectUser = (e:Ev)=>{
         setUser(users()[parseInt(e.target.value)]);
         setPicked(true);
     }
-    onMount(()=>{
-        fetch('/user')
-        .then(res=>res.json())
-        .then(data=>{
-            setUsers(data.users)
-            setError(data.error)
-            setUser(users()[0])
-        }).catch(err=>console.log(err));
-    })
+
     return(
         <>
         <Show when={typeof error() !== 'undefined'}
@@ -36,7 +29,7 @@ export default function PickUser(props:{name:string,label:string}){
                     }
                 </For>
             </select>
-                 <input type="hidden" value={user().nama} name={`nama_${props.name}`}/>
+                <input type="hidden" value={user().nama} name={`nama_${props.name}`}/>
                 <label for={`jabatan_${props.name}`} class="ml-2">JABATAN:</label> 
                 <input type="text" name={`jabatan_${props.name}`} value={user().jabatan} />
                 <label for={`telefon_${props.name}`} class="ml-2">NO. TEL:</label>
