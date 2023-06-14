@@ -3,16 +3,12 @@ import PickUser from "../components/solidjs/PickUser";
 import Layout from "../layouts/Layout.astro";
 import Excel from "exceljs";
 import Mess from "../components/astro/Mess.astro";
-import path,{dirname} from "path";
 import User from "../models/User";
 
-console.log(import.meta.url)
 if (Astro.request.method === "POST") {
   try {
     const body = await Astro.request.formData();
-    // const file = path.join('public','Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX')
-    // const file = path.join(path.dirname(import.meta.url),'Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX')
-    const file = "./Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX"
+    const file = `${Astro.request.url}/Borang_Tempahan.XLSX`
     const workbook = new Excel.Workbook();
     await workbook.xlsx.readFile(file);
     const sheet = workbook.getWorksheet(1);
@@ -374,9 +370,9 @@ try{
       <PickUser name="pegawai" label="PEGAWAI" users={users} client:load />
       <Mess />
       <div class="p-2">
-        <button class="text-white bg-blue-500 hover:bg-blue-600 rounded p-1"
-          >MUAT TURUN</button
-        >
+        <button class="text-white bg-blue-500 hover:bg-blue-600 rounded p-1">
+          MUAT TURUN
+          </button>
       </div>
     </form>
   </main>
