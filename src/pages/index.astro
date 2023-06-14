@@ -6,11 +6,11 @@ import Mess from "../components/astro/Mess.astro";
 import User from "../models/User";
 import path from 'path'
 
-
+console.log(path.resolve("_astro"))
 if (Astro.request.method === "POST") {
   try {
+    const file = `${path.resolve("Borang_Tempahan.XLSX")}`
     const body = await Astro.request.formData();
-    const file = `${path.resolve("client\\Borang_Tempahan.XLSX")}`
     const workbook = new Excel.Workbook();
     await workbook.xlsx.readFile(file);
     const sheet = workbook.getWorksheet(1);
