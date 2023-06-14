@@ -3,17 +3,18 @@ import PickUser from "../components/solidjs/PickUser";
 import Layout from "../layouts/Layout.astro";
 import Excel from "exceljs";
 import Mess from "../components/astro/Mess.astro";
-import path from "path";
+import path,{dirname} from "path";
 import User from "../models/User";
 
 if (Astro.request.method === "POST") {
   try {
     const body = await Astro.request.formData();
-    // console.log(body);
+    // const file = path.join('public','Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX')
+    const file = path.join(path.dirname(import.meta.url),'client','Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX')
+    console.log(file);
+    
     const workbook = new Excel.Workbook();
-    await workbook.xlsx.readFile(
-     path.join('public','Borang Tempahan Kemudahan ELC_2023_PTC (1).XLSX')
-    );
+    await workbook.xlsx.readFile(url);
     const sheet = workbook.getWorksheet(1);
     const sheet2 = workbook.getWorksheet(2);
     sheet.getCell("E14").value = body.get("jabatan_pemohon")?.toString();
@@ -380,32 +381,3 @@ try{
     </form>
   </main>
 </Layout>
-<!-- <script>
-  const borang = document.querySelector("#borang_form") as HTMLFormElement;
-  borang?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(borang);
-    let body = new Map();
-    for (const [key, value] of formData.entries()) {
-      body.set(key,value);
-    }
-    console.log(body)
-    fetch("/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-      .then((res) => res.blob())
-      .then((data) => {
-        const url = URL.createObjectURL(data);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `${crypto.randomUUID()}.xlsx`;
-        a.click();
-        URL.revokeObjectURL(url);
-      })
-      .catch((err) => console.log(err));
-  });
-</script> -->

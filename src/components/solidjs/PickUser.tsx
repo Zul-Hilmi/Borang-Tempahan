@@ -5,7 +5,6 @@ type Ev = Event & {
     target: HTMLSelectElement;
 }
 export default function PickUser(props:{name:string,label:string,users:IUser[]}){
-    console.log(props.users)
     const [users,setUsers] = createSignal<IUser[]>(props.users);
     const [error,setError] = createSignal('');
     const [user,setUser] = createSignal<IUser>(users()[0]);
