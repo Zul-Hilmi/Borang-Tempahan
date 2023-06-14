@@ -4,11 +4,13 @@ import Layout from "../layouts/Layout.astro";
 import Excel from "exceljs";
 import Mess from "../components/astro/Mess.astro";
 import User from "../models/User";
+import path from 'path'
+
 
 if (Astro.request.method === "POST") {
   try {
     const body = await Astro.request.formData();
-    const file = `${Astro.request.url}Borang_Tempahan.XLSX`
+    const file = `${path.resolve("client\\Borang_Tempahan.XLSX")}`
     const workbook = new Excel.Workbook();
     await workbook.xlsx.readFile(file);
     const sheet = workbook.getWorksheet(1);
@@ -363,7 +365,9 @@ try{
       action=""
       class="flex flex-col items-center gap-2 bg-slate-300 max-w-fit"
     >
-      <h1 class="text-center font-bold bg-slate-400 w-full">
+    <h1 class="font-bold text-center bg-slate-400 w-full">BORANG TEMPAHAN</h1>
+
+      <h1 class="text-center font-bold bg-slate-200 w-full">
         MAKLUMAT PETUGAS PROGRAM
       </h1>
       <PickUser name="pemohon" label="PEMOHON" users={users} client:load />
