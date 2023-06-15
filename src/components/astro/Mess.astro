@@ -3,10 +3,10 @@ import TableMakanMinum from "./TableMakanMinum.astro";
 
 ---
 
-<div class="flex flex-col w-full gap-2 p-1">
+<div class="flex flex-col items-center gap-2 p-1">
     
 
-    <div class="grid grid-cols-2 border border-black p-1">
+    <div class="grid grid-cols-2 border border-black p-1 w-full">
       <h2 class='col-span-2 bg-slate-200 text-center font-bold'>MAKLUMAT PROGRAM</h2>
         <label for="nama_program" class="font-bold ">NAMA PROGRAM</label>
         <input type="text" name="nama_program" id="nama_program"  placeholder="NAMA PROGRAM"
@@ -25,7 +25,7 @@ import TableMakanMinum from "./TableMakanMinum.astro";
           class="border border-black hover:outline-none rounded px-1"/> 
     </div>
     
-    <div class="grid grid-cols-2 border border-black p-1">
+    <div class="grid grid-cols-2 border border-black p-1 w-full">
       <h1 class='col-span-2 bg-slate-200 text-center font-bold'>TEMPAHAN PENGINAPAN RUAI INAP</h1>
         <label for="tarikh_masuk" class="font-bold">TARIKH MASUK</label>
         <input type="text" name="tarikh_masuk" id="tarikh_masuk" placeholder="TARIKH MASUK"
@@ -53,7 +53,7 @@ import TableMakanMinum from "./TableMakanMinum.astro";
            </textarea>
     </div>
 
-    <div class="grid grid-cols-2 border border-black p-1">
+    <div class="grid grid-cols-2 border border-black p-1 w-full">
       <h1 class='col-span-2 bg-slate-200 text-center font-bold'>TEMPAHAN BILIK LATIHAN</h1>
       <h3 class='col-span-2 bg-slate-200 text-center font-bold border border-black'>MAKLUMAT TEMPAHAN BILIK LATIHAN</h3>
 
@@ -112,7 +112,7 @@ import TableMakanMinum from "./TableMakanMinum.astro";
           class="border border-black hover:outline-none rounded px-1"></textarea>
 
         <div class='col-span-2'>&nbsp;</div>
-        <h3 class='col-span-2 bg-slate-200 text-center font-bold'>MAKLUMAT TEMPAHAN (AUDIO-VISUAL)</h3>
+        <h3 class='col-span-2 bg-slate-200 text-center font-bold w-full'>MAKLUMAT TEMPAHAN (AUDIO-VISUAL)</h3>
 
         <div class="text-center bg-slate-200 font-bold  border border-black">JENIS PERALATAN</div>
         <div class="text-center bg-slate-200 font-bold  border border-black">JUMLAH DIPERLUKAN</div>
@@ -157,7 +157,7 @@ import TableMakanMinum from "./TableMakanMinum.astro";
           
 
     </div>
-    <div class="grid grid-cols-2 border border-black p-1">
+    <div class="grid grid-cols-2 border border-black p-1 w-full">
       <h2 class='col-span-2 bg-slate-200 text-center font-bold'>TEMPAHAN MAKAN MINUM</h2>
         <label for="kod_material" class="font-bold ">KOD MATERIAL</label>
         <input type="text" name="kod_material" id="kod_material" placeholder="KOD MATERIAL"
@@ -176,7 +176,7 @@ import TableMakanMinum from "./TableMakanMinum.astro";
           class="border border-black hover:outline-none rounded px-1"></textarea> 
     </div>
     <TableMakanMinum/>
-  <div class="grid grid-cols-2 border border-black p-1">
+  <div class="grid grid-cols-2 border border-black p-1 w-full">
       <label for="dome_set" class="font-bold ">DOME SET</label>
       <input type="text" name="dome_set" id="dome_set" placeholder="DOME SET"
         class="border border-black hover:outline-none rounded px-1"/>   
